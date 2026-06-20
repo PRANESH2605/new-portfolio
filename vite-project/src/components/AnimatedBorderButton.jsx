@@ -10,7 +10,7 @@ export default function AnimatedButton() {
       {/* SVG Border (hidden initially) */}
       <svg
         className="absolute inset-0 w-full h-full opacity-0
-        group-hover:opacity-100 transition-opacity duration-300"
+        group-hover:opacity-100 transition-opacity duraton-300"
         viewBox="0 0 100 40"
         preserveAspectRatio="none"
       >
