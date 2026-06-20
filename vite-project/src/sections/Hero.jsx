@@ -96,7 +96,7 @@ export const Hero =()=>{
              />
 
             <div className="relative glass rounded-3xl p-2 glow-border">
-               <img src="/my image.png" alt="Pranesh Sivakumar" 
+               <img src="/my image (2).png" alt="Pranesh Sivakumar" 
                className="w-full aspect-[4/5] object-cover rounded-2xl"
                />
 
