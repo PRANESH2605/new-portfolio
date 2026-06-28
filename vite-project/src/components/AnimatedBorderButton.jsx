@@ -1,16 +1,18 @@
 import React from "react";
 import { Download } from "lucide-react";
 
-export default function AnimatedButton() {
+export default function AnimatedButton({ children, className = "", ...props }) {
   return (
-    <button className="relative flex items-center gap-2 px-8 py-4
-    text-white border border-gray-600 rounded-full
-    overflow-hidden group">
-
+    <button 
+      className={`relative flex items-center gap-2 px-8 py-4
+      text-foreground border border-border rounded-full
+      overflow-hidden group transition-all duration-300 hover:text-primary ${className}`}
+      {...props}
+    >
       {/* SVG Border (hidden initially) */}
       <svg
         className="absolute inset-0 w-full h-full opacity-0
-        group-hover:opacity-100 transition-opacity duraton-300"
+        group-hover:opacity-100 transition-opacity duration-300"
         viewBox="0 0 100 40"
         preserveAspectRatio="none"
       >
@@ -22,26 +24,22 @@ export default function AnimatedButton() {
           rx="20"
           ry="20"
           fill="none"
-          stroke="cyan"
+          stroke="var(--color-primary)"
           strokeWidth="2"
           strokeDasharray="60 140"
-          className="animate-[dash_2s_linear_infinite]"
+          className="animate-dash"
         />
       </svg>
 
       {/* Button content */}
       <span className="relative z-10 flex items-center gap-2">
-        <Download size={18} />
-        Download
+        {children || (
+          <>
+            <Download size={18} />
+            Download
+          </>
+        )}
       </span>
-
-      <style jsx>{`
-        @keyframes dash {
-          to {
-            stroke-dashoffset: -200;
-          }
-        }
-      `}</style>
     </button>
   );
 }

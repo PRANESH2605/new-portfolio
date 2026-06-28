@@ -1,5 +1,5 @@
 import {Button} from "@/components/Button";
-import {Menu, X} from "lucide-react"
+import {Menu, X, Sun, Moon} from "lucide-react"
 import { useEffect, useState } from "react";
 const navLinks = [
    {href: "#", label: "Home"},
@@ -10,7 +10,7 @@ const navLinks = [
    {href: "#contact", label: "Contact"}
 ]
 
-export const Navbar=()=>{
+export const Navbar=({ theme, toggleTheme })=>{
    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
    const [isScrolled, setIsScrolled] = useState(false);
 
@@ -39,23 +39,38 @@ export const Navbar=()=>{
             </div>
          </div>
          
-         {/* CTA Button*/}
-         <div className="hidden md:block">
+         {/* CTA & Theme Button*/}
+         <div className="hidden md:flex items-center gap-4">
+            <button 
+               onClick={toggleTheme} 
+               className="p-2.5 rounded-full glass text-foreground hover:text-primary hover:scale-105 transition-all duration-300 cursor-pointer"
+               aria-label="Toggle Theme"
+            >
+               {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            </button>
             <a href="#contact"><Button>Contact Me</Button></a>
          </div>
 
-         {/*Mobile menu Button*/}
-         <button className="md:hidden p-2 text-foreground cursor-pointer" onClick={()=>setIsMobileMenuOpen((prev)=>!prev)}>
-            {isMobileMenuOpen ?<X size={24}/>:<Menu size={24}/>}
-
-         </button>
+         {/*Mobile menu & Theme Button*/}
+         <div className="flex items-center gap-2 md:hidden">
+            <button 
+               onClick={toggleTheme} 
+               className="p-2 rounded-full glass text-foreground hover:text-primary transition-colors cursor-pointer"
+               aria-label="Toggle Theme"
+            >
+               {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            </button>
+            <button className="p-2 text-foreground cursor-pointer" onClick={()=>setIsMobileMenuOpen((prev)=>!prev)}>
+               {isMobileMenuOpen ?<X size={24}/>:<Menu size={24}/>}
+            </button>
+         </div>
       </nav>
       {/*Mobile Menu*/}
       {isMobileMenuOpen &&(
       <div className="md:hidden glass-strong animate-fade-in">
          <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
                {navLinks.map((link, index)=>(
-                  <a href={link.href} key={index} className="text-lg text-muted-foreground hover:text-foreground py-2">{link.label}</a>
+                  <a href={link.href} key={index} onClick={() => setIsMobileMenuOpen(false)} className="text-lg text-muted-foreground hover:text-foreground py-2">{link.label}</a>
                
                ) )}
                <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>

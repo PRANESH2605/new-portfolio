@@ -56,7 +56,7 @@ export const Hero =()=>{
                <br/>
                experiences with 
                <br/>
-               <span className="font-serif italic font-normal text-white">precision</span>
+               <span className="font-serif italic font-normal text-foreground">precision</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
                Hi, I'm Pranesh Sivakumar - I'm an aspiring developer 
